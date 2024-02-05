@@ -1,0 +1,51 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  background-image: url("../assets/images/container_1_bg.png");
+  background-size: cover;
+  width: 100%;
+  height: 50rem;
+  margin-top: 10.8rem;
+  margin-bottom: 5rem;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 50rem;
+  padding-left: 4rem;
+}
+
+.content button {
+  width: 20.7rem;
+  height: 4.7rem;
+  margin-top: 4rem;
+}
+
+.content button::after {
+  content: " >";
+}
+
+.second_container {
+  display: flex;
+  justify-content: space-around;
+  height: 30rem;
+}
+
+.second_container img {
+  width: 6.5rem;
+}
+
+.cookingBook span,
+.ingredients span,
+.addBook span {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.5rem;
+}
