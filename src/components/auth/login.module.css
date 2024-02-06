@@ -1,0 +1,33 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  height: 50rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.container * {
+  margin-top: 2rem;
+}
+
+input {
+  padding: 1.5rem;
+  border-radius: 2rem;
+  width: 80rem;
+  box-shadow: none;
+  border: 1px solid black;
+  outline-color: #3ba347;
+  outline-width: thick;
+}
+
+button {
+  padding: 1rem 5rem;
+  overflow: visible;
+  outline: #3ba347;
+}

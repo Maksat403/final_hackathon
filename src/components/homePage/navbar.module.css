@@ -47,3 +47,39 @@
   right: 6.5rem;
   top: 4rem;
 }
+
+.burger-menu {
+  cursor: pointer;
+}
+
+.bar {
+  width: 30px;
+  height: 3px;
+  background-color: #fff;
+  margin: 6px 0;
+  transition: 0.4s;
+}
+
+.menu {
+  list-style: none;
+  display: flex;
+}
+
+.menu li {
+  margin-right: 20px;
+}
+
+.menu a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 18px;
+}
+
+.menu.show {
+  display: flex;
+}
+
+.menu li {
+  margin: 0;
+  text-align: center;
+}

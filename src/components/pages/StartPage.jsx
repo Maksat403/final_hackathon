@@ -3,6 +3,7 @@ import styles from "./startPage.module.css";
 import cookingBook from "../assets/images/cookingBook.png";
 import ingredients from "../assets/images/ingredients.png";
 import addBook from "../assets/images/addBook.png";
+import Footer from "../homePage/Footer";
 
 const StartPage = () => {
   return (
@@ -50,6 +51,7 @@ const StartPage = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };
