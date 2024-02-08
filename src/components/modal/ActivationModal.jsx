@@ -2,17 +2,21 @@ import React, { useState } from "react";
 import Modal from "react-modal";
 import { useSpring, animated } from "react-spring";
 
-const CustomModal = ({ isOpen, onClose, message }) => {
+const ActivationModal = ({ isOpenAct, onClose, activationLink }) => {
   const modalAnimation = useSpring({
-    opacity: isOpen ? 1 : 0,
-    transform: isOpen ? "translateY(0)" : "translateY(-50px)",
+    opacity: isOpenAct ? 1 : 0,
+    transform: isOpenAct ? "translateY(0)" : "translateY(-50px)",
   });
+
+  const openModal = () => {
+    isOpen = { isOpenAct };
+  };
 
   return (
     <Modal
-      isOpen={isOpen}
+      isOpen={isOpenAct}
       onRequestClose={onClose}
-      contentLabel="Example Modal"
+      contentLabel="Activation Modal"
       ariaHideApp={false}
       style={{
         overlay: {
@@ -43,22 +47,33 @@ const CustomModal = ({ isOpen, onClose, message }) => {
               color: "black",
             }}
           >
-            {message}
+            Please activate your account by clicking the link below:
           </p>
+          <a
+            href={activationLink}
+            style={{
+              color: "#007BFF",
+              textDecoration: "none",
+              marginTop: "1rem",
+              wordBreak: "break-all",
+            }}
+          >
+            {activationLink}
+          </a>
           <button
             style={{
-              marginTop: "4rem",
+              marginTop: "2rem",
               borderRadius: "2rem",
               border: "1px solid #0000",
               boxShadow: "none",
-              marginTop: "5rem",
               backgroundColor: "#F1BAA1",
               color: "#ffff",
               padding: "1rem 5rem",
+              cursor: "pointer",
             }}
             onClick={onClose}
           >
-            Try again
+            OK
           </button>
         </div>
       </animated.div>
@@ -66,4 +81,4 @@ const CustomModal = ({ isOpen, onClose, message }) => {
   );
 };
 
-export default CustomModal;
+export default ActivationModal;

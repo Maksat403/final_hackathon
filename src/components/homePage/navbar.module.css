@@ -83,3 +83,63 @@
   margin: 0;
   text-align: center;
 }
+
+.navLinks {
+  text-decoration: none;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.currentUser {
+  display: flex;
+  justify-content: space-between;
+  cursor: default;
+}
+
+.currentUser div {
+  margin-right: 3rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.currentUser img {
+  width: 3.2rem;
+  cursor: pointer;
+}
+
+.registerImg img {
+  width: 3.2rem;
+  cursor: pointer;
+}
+.registerImg {
+  margin: 0 10.5rem;
+}
+
+.dropdown {
+  position: absolute;
+  width: 12.5rem;
+  right: 2rem;
+  height: 7rem;
+  background-color: #f1baa1;
+  top: 2rem;
+  border-radius: 20rem;
+}
+
+.dropdown li {
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+  margin-top: 1rem;
+}
+
+.dropdown_link {
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+}
+.dropdown_link:hover {
+  color: #764a35;
+  transform: scale(1.1);
+  transition: 0.5s;
+}

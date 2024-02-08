@@ -35,8 +35,8 @@ const Register = () => {
       return;
     }
 
-    if (password.length < 10) {
-      setMessage("The password must contain at least 10 characters");
+    if (password.length < 6) {
+      setMessage("The password must contain at least 6 characters");
       setIsOpen(true);
       return;
     }
@@ -50,38 +50,40 @@ const Register = () => {
     let formData = new FormData();
     formData.append("email", email);
     formData.append("password", password);
-    formData.append("passwordConfirm", passwordConfirm);
+    formData.append("password_confirm", passwordConfirm);
     formData.append("first_name", firstName);
     formData.append("last_name", lastName);
     handleRegister(formData, navigate);
   };
   return (
     <div className={styles.container}>
+      <div className={styles.circle1}></div>
+      <div className={styles.circle2}></div>
       <h2 style={{ fontSize: "3.8rem", marginTop: "18rem" }}>Register</h2>
       {error ? <h3>{error}</h3> : null}
       <input
         type="text"
-        placeholder="email"
+        placeholder="Enter your email"
         onChange={(e) => setEmail(e.target.value)}
       />
       <input
         type="password"
-        placeholder="password"
+        placeholder="Enter your password"
         onChange={(e) => setPassword(e.target.value)}
       />
       <input
         type="password"
-        placeholder="password confirmation"
+        placeholder="Confirm your password"
         onChange={(e) => setPasswordConfirm(e.target.value)}
       />
       <input
         type="text"
-        placeholder="first name"
+        placeholder="Enter your name"
         onChange={(e) => setFirstName(e.target.value)}
       />
       <input
         type="text"
-        placeholder="last name"
+        placeholder="Enter your surname"
         onChange={(e) => setLastName(e.target.value)}
       />
       <button onClick={handleSave}>Register</button>

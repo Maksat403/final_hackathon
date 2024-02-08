@@ -19,7 +19,7 @@ const AuthContext = ({ children }) => {
     try {
       const res = await axios.post(`${API}/user/register/`, formData);
       console.log(res, "regisr responce");
-      navigate("/login");
+      // navigate("/login");
     } catch (error) {
       console.log(error, "register error");
       setError(
@@ -35,18 +35,66 @@ const AuthContext = ({ children }) => {
   const handleLogin = async (formData, email, navigate) => {
     try {
       const res = await axios.post(`${API}/user/login/`, formData);
-      localStorage.setItem("tokens", JSON.stringify(res.data));
-      localStorage.setItem("email", email);
-      setCurrentUser(email);
-      console.log(res, "res");
-      navigate("/");
+
+      if (res && res.data) {
+        localStorage.setItem("tokens", JSON.stringify(res.data));
+        localStorage.setItem("email", email);
+        setCurrentUser(email);
+        console.log(res, "res");
+        navigate("/");
+      } else {
+        console.error("Invalid response format:", res);
+        setError("An unexpected error occurred.");
+      }
     } catch (error) {
-      console.log(error);
-      setError(Object.values(error.response.data).flat(2));
+      console.error(error);
+
+      if (error.response && error.response.data) {
+        setError(Object.values(error.response.data).flat(2));
+      } else {
+        setError("An unexpected error occurred.");
+      }
     }
   };
 
-  const values = { handleRegister, handleLogin, setError, error };
+  //! Logout
+  const handleLogout = () => {
+    localStorage.removeItem("tokens");
+    localStorage.removeItem("email");
+    setCurrentUser(null);
+    navigate("/");
+  };
+
+  //! checkAuth
+  const checkAuth = async () => {
+    try {
+      setLoading(true);
+      const tokens = JSON.parse(localStorage.getItem("tokens"));
+      const res = await axios.post(`${API}/user/refresh/`, {
+        refresh: tokens.refresh,
+      });
+      localStorage.setItem(
+        "tokens",
+        JSON.stringify({ access: res.data.access, refresh: tokens.refresh })
+      );
+      const email = localStorage.getItem("email");
+      setCurrentUser(email);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const values = {
+    handleRegister,
+    handleLogin,
+    setError,
+    handleLogout,
+    checkAuth,
+    currentUser,
+    error,
+  };
   return <authContext.Provider value={values}>{children}</authContext.Provider>;
 };
 
