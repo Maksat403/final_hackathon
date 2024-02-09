@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "./Footer.module.css";
-import img1 from "../homePage/Cooking.jpg";
 
 const Footer = () => {
   return (
