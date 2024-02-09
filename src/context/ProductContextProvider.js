@@ -46,12 +46,12 @@ const ProductContextProvider = ({ children }) => {
       console.log(error);
     }
   }
-
   // const Authorization = `Bearer ${tokens.access}`;
   // const config = {
   //   headers: { Authorization },
   // };
   // return config;
+
   return (
     <productContext.Provider
       value={{ createProduct, getCategories, categories: state.categories }}
