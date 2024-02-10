@@ -5,7 +5,7 @@
 }
 
 .container {
-  height: 50rem;
+  height: 49rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -13,7 +13,7 @@
 }
 
 .container * {
-  margin-top: 2rem;
+  margin-top: 1.5rem;
 }
 
 input {
@@ -45,7 +45,7 @@ input {
   background-color: #aec09a;
   z-index: -1;
   left: 18rem;
-  top: 9rem;
+  top: 10rem;
 }
 
 .circle2 {
@@ -56,5 +56,5 @@ input {
   background-color: #aec09a;
   z-index: -1;
   left: 66rem;
-  top: 9rem;
+  top: 10rem;
 }

@@ -28,16 +28,42 @@ const Navbar = () => {
   return (
     <div>
       <div className={styles.navbar}>
-        <div className={styles.links}>
-          <div className={styles.links_title}>
-            <span>Recipes</span>
-            <span>About</span>
-            <span>For Partners</span>
-          </div>
+        <div className={styles.hamburger_menu}>
+          <input id={styles.menu__toggle} type="checkbox" />
+          <label className={styles.menu__btn} for={styles.menu__toggle}>
+            <span></span>
+          </label>
+          <ul className={styles.menu__box}>
+            <li>
+              <a className={styles.menu__item} href="#">
+                Recipes
+              </a>
+            </li>
+            <li>
+              <a className={styles.menu__item} href="#">
+                About
+              </a>
+            </li>
+            <li>
+              <a className={styles.menu__item} href="#">
+                For Partners
+              </a>
+            </li>
+            <li>
+              <a className={styles.menu__item} href="#">
+                Contacts
+              </a>
+            </li>
+            {/* <li>
+              <a className={styles.menu__item} href="#">
+                Контакты
+              </a>
+            </li> */}
+          </ul>
         </div>
         <div className={styles.title}>
           <NavLink to={"/"} className={styles.navLinks}>
-            <span style={{ fontSize: "4rem" }}>GOODZY</span>
+            <span style={{ fontSize: "3vw" }}>GOODZY</span>
             <span>Easy & Healthy Recipes</span>
           </NavLink>
         </div>

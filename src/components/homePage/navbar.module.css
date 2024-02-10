@@ -10,42 +10,24 @@
   top: 0;
   background-color: #fff;
   width: 100%;
-  height: 11rem;
+  min-height: 11rem;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   font-size: 1.6rem;
-  padding: 0 5.6rem;
+  padding: 0 5.6vw;
 }
 
 .links_title {
   display: flex;
-  gap: 4.8rem;
+  gap: 4vw;
 }
 
 .title {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.search_input {
-  width: 26.5rem;
-  height: 4.1rem;
-  border-radius: 2rem;
-  border: 1.2px solid black;
-  outline: none;
-  box-shadow: none;
-  padding: 0 2rem;
-  position: relative;
-}
-
-.search_icon {
-  height: 3rem;
-  position: absolute;
-  right: 6.5rem;
-  top: 4rem;
 }
 
 .burger-menu {
@@ -58,30 +40,6 @@
   background-color: #fff;
   margin: 6px 0;
   transition: 0.4s;
-}
-
-.menu {
-  list-style: none;
-  display: flex;
-}
-
-.menu li {
-  margin-right: 20px;
-}
-
-.menu a {
-  text-decoration: none;
-  color: #fff;
-  font-size: 18px;
-}
-
-.menu.show {
-  display: flex;
-}
-
-.menu li {
-  margin: 0;
-  text-align: center;
 }
 
 .navLinks {
@@ -99,32 +57,32 @@
 }
 
 .currentUser div {
-  margin-right: 3rem;
+  margin-right: 1.5vw;
   display: flex;
   justify-content: space-between;
 }
 
 .currentUser img {
-  width: 3.2rem;
+  width: 2vw;
   cursor: pointer;
 }
 
 .registerImg img {
-  width: 3.2rem;
+  width: 2.5vw;
   cursor: pointer;
 }
 .registerImg {
-  margin: 0 10.5rem;
+  margin: 0 5.5vw;
 }
 
 .dropdown {
   position: absolute;
-  width: 12.5rem;
-  right: 2rem;
-  height: 7rem;
+  width: 8vw;
+  right: 2vw;
+  min-height: 7rem;
   background-color: #f1baa1;
   top: 2rem;
-  border-radius: 20rem;
+  border-radius: 2rem;
 }
 
 .dropdown li {
@@ -142,4 +100,95 @@
   color: #764a35;
   transform: scale(1.1);
   transition: 0.5s;
+}
+
+#menu__toggle {
+  opacity: 0;
+  width: 17rem;
+}
+
+.menu__btn {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  width: 26px;
+  height: 26px;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.menu__btn > span,
+.menu__btn > span::before,
+.menu__btn > span::after {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: #616161;
+}
+.menu__btn > span::before {
+  content: "";
+  top: -8px;
+}
+.menu__btn > span::after {
+  content: "";
+  top: 8px;
+}
+
+.menu__box {
+  display: block;
+  position: fixed;
+  visibility: hidden;
+  top: 0;
+  left: -100%;
+  width: 300px;
+  height: 100%;
+  margin: 0;
+  padding: 80px 0;
+  list-style: none;
+  text-align: center;
+  background-color: #e7f6f9;
+  box-shadow: 1px 0px 6px rgba(0, 0, 0, 0.2);
+}
+
+.menu__item {
+  display: block;
+  padding: 12px 24px;
+  color: #000000;
+  font-size: 1.8rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+.menu__item:hover {
+  background-color: #cfd8dc;
+}
+
+#menu__toggle:checked ~ .menu__btn > span {
+  transform: rotate(45deg);
+}
+#menu__toggle:checked ~ .menu__btn > span::before {
+  top: 0;
+  transform: rotate(0);
+}
+#menu__toggle:checked ~ .menu__btn > span::after {
+  top: 0;
+  transform: rotate(90deg);
+}
+#menu__toggle:checked ~ .menu__box {
+  visibility: visible;
+  left: 0;
+}
+
+.menu__btn > span,
+.menu__btn > span::before,
+.menu__btn > span::after {
+  transition-duration: 0.25s;
+}
+.menu__box {
+  transition-duration: 0.25s;
+}
+.menu__item {
+  transition-duration: 0.25s;
 }

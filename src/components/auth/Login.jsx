@@ -3,7 +3,6 @@ import { authContext } from "../../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./login.module.css";
 import CustomModal from "../modal/CustomModal";
-import ResetPasswordRequest from "./ResetPasswordRequest";
 
 const Login = () => {
   const { handleLogin, error, setError, checkAuth } = useContext(authContext);

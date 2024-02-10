@@ -19,7 +19,7 @@ const AuthContext = ({ children }) => {
     try {
       const res = await axios.post(`${API}/user/register/`, formData);
       console.log(res, "regisr responce");
-      // navigate("/login");
+      navigate("/login");
     } catch (error) {
       console.log(error, "register error");
       setError(

@@ -3,6 +3,7 @@ import { authContext } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import styles from "./register.module.css";
 import CustomModal from "../modal/CustomModal";
+import Modal from "../modal/CheckGmailModal";
 
 const Register = () => {
   const { handleRegister, setError, error } = useContext(authContext);
@@ -15,6 +16,12 @@ const Register = () => {
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+
+  const [showModal, setShowModal] = useState(false);
+
+  const closeModal = () => {
+    setShowModal(false);
+  };
 
   const navigate = useNavigate();
 
@@ -53,8 +60,12 @@ const Register = () => {
     formData.append("password_confirm", passwordConfirm);
     formData.append("first_name", firstName);
     formData.append("last_name", lastName);
-    handleRegister(formData, navigate);
+    setShowModal(true);
+    setTimeout(() => {
+      handleRegister(formData, navigate);
+    }, 10000);
   };
+
   return (
     <div className={styles.container}>
       <div className={styles.circle1}></div>
@@ -92,6 +103,7 @@ const Register = () => {
         onClose={() => setIsOpen(false)}
         message={message}
       />
+      {showModal && <Modal onClose={closeModal}></Modal>}
     </div>
   );
 };

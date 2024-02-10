@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styles from "./resetPassword.module.css";
+import Modal from "../modal/ActivationModal";
+import { useNavigate } from "react-router-dom";
 
 const API = "http://34.16.110.19/api";
 
@@ -9,6 +11,13 @@ const ResetPassword = () => {
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [message, setMessage] = useState("");
+  const [showModal, setShowModal] = useState(false);
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    setShowModal(true);
+  }, []);
 
   const handleResetPassword = async () => {
     try {
@@ -22,10 +31,15 @@ const ResetPassword = () => {
       );
 
       setMessage(response.data.message);
+      navigate("/");
     } catch (error) {
       console.error("Error resetting password:", error);
       setMessage("An error occurred. Please try again.");
     }
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
   };
 
   return (
@@ -53,6 +67,8 @@ const ResetPassword = () => {
         onChange={(e) => setPasswordConfirm(e.target.value)}
       />
       <button onClick={handleResetPassword}>Reset Password</button>
+
+      {showModal && <Modal onClose={closeModal}></Modal>}
     </div>
   );
 };

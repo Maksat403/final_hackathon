@@ -39,7 +39,7 @@ const ActivationModal = ({ onClose, activationLink }) => {
           >
             email
           </a>
-          . We have sent you an account activation code.
+          . We have sent you an account activation link.
         </p>
         <p style={{ fontSize: "1.8rem" }}>
           If you don't see the email, check the Spam folder.
