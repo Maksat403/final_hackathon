@@ -1,17 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
-import { productContext } from "../../context/ProductContextProvider";
 import { useNavigate } from "react-router-dom";
-
-import axios from "axios";
+import { useProducts } from "../../context/ProductContextProvider";
 
 const AddProduct = () => {
-  const { createProduct, categories, getCategories } =
-    useContext(productContext);
-  const navigate = useNavigate();
+  const { createProduct } = useProducts();
 
-  useEffect(() => {
-    getCategories();
-  }, []);
+  const navigate = useNavigate();
 
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -20,7 +14,7 @@ const AddProduct = () => {
   const [type, setType] = useState("");
   const [recipe, setRecipe] = useState("");
   const [level, setLevel] = useState("");
-  const [owner, setOwner] = useState("");
+
   const [ingridients, setIngridients] = useState([]);
 
   function handleSave() {
@@ -36,7 +30,6 @@ const AddProduct = () => {
       type,
       recipe,
       level,
-      owner,
     };
     createProduct(newProduct, navigate);
     console.log(newProduct);
@@ -110,12 +103,6 @@ const AddProduct = () => {
         <option>Choose level...</option>
         <option>Easy</option>
       </select>
-      <input
-        type="text"
-        placeholder="owner id"
-        value={owner}
-        onChange={(e) => setOwner(e.target.value)}
-      />
       //!
       <button onClick={handleSave}>Save Products</button>
     </div>
@@ -124,99 +111,6 @@ const AddProduct = () => {
 
 export default AddProduct;
 
-// const AddProduct = () => {
-//   const { createProduct, categories, getCategories } = useProducts();
-//   console.log(categories);
-//   const navigate = useNavigate();
-//   // useEffect(() => {
-//   //   getCategories();
-//   // }, []);
-
-//   const [name, setName] = useState("");
-//   const [cuisine, setCuisine] = useState("");
-//   const [type, setType] = useState("");
-//   const [cooking_time, setCooking_Type] = useState("");
-//   const [recipe, setRecipe] = useState("");
-//   const [description, setDescription] = useState("");
-//   const [category, setCategory] = useState("");
-//   const [photo, setPhoto] = useState(null);
-//   const [owner, setOwner] = useState("");
-//   const handleClick = () => {
-//     const newProduct = new FormData();
-//     newProduct.append("name", name);
-//     newProduct.append("cuisine", cuisine);
-//     newProduct.append("type", type);
-//     newProduct.append("cooking_time", cooking_time);
-//     newProduct.append("recipe", recipe);
-//     newProduct.append("description", description);
-//     newProduct.append("photo", photo);
-//     newProduct.append("category", category);
-//     newProduct.append("owner", owner);
-//     createProduct(newProduct);
-//     navigate("/productList");
-//   };
-
-//   return (
-//     <div>
-//       <h2>Add Product</h2>
-//       <input
-//         onChange={(e) => setName(e.target.value)}
-//         placeholder="name"
-//         type="text"
-//       />
-//       <select onChange={(e) => setCuisine(e.target.value)}>
-//         <option>Choose cuisine</option>
-//         {categories.map((elem) => (
-//           <option value={elem.id} key={elem.id}>
-//             {elem.name}
-//           </option>
-//         ))}
-//       </select>
-//       <select onChange={(e) => setType(e.target.value)}>
-//         <option>Choose setType</option>
-//         {categories.map((elem) => (
-//           <option value={elem.id} key={elem.id}>
-//             {elem.name}
-//           </option>
-//         ))}
-//       </select>
-//       <input
-//         onChange={(e) => setCooking_Type(parseInt(e.target.value))}
-//         placeholder="Time To Cook"
-//         type="number"
-//       />
-//       <input
-//         onChange={(e) => setRecipe(parseInt(e.target.value))}
-//         placeholder="Recipe"
-//         type="text"
-//       />
-//       <input
-//         onChange={(e) => setOwner(parseInt(e.target.value))}
-//         placeholder="Owner Id"
-//         type="number"
-//       />
-//       //!
-//       {/* <input
-//         onChange={(e) => setDescription(e.target.value)}
-//         placeholder="description"
-//         type="text"
-//       />
-//       <input
-//         onChange={(e) => setPhoto(e.target.files[0])}
-//         placeholder="photo"
-//         type="file"
-//         accept="image/"
-//       />
-//       <select onChange={(e) => setCategory(e.target.value)}>
-//         <option>Choose category</option>
-//         {categories.map((elem) => (
-//           <option value={elem.id} key={elem.id}>
-//             {elem.title}
-//           </option>
-//         ))}
-//       </select> */}
-//       <button onClick={handleClick}>Add Product</button>
-//     </div>
 //     // <div>
 //     //   <div
 //     //     style={{
