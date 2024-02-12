@@ -1,11 +1,15 @@
-import React, { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import { useProducts } from "../../context/ProductContextProvider";
+import { useNavigate } from "react-router-dom";
 
 const AddProduct = () => {
-  const { createProduct } = useProducts();
-
+  const { createProduct, ingridients, getIngridients } = useProducts();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // Вызываем функцию для получения данных об ингредиентах
+    getIngridients();
+  }, []);
 
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -14,59 +18,32 @@ const AddProduct = () => {
   const [type, setType] = useState("");
   const [recipe, setRecipe] = useState("");
   const [level, setLevel] = useState("");
+  const [ingridient, setIngridient] = useState("");
+  const [ingridientsArray, setIngridientsArray] = useState([]);
+  const handleClick = (e) => {
+    e.preventDefault();
+    const newProduct = new FormData();
+    newProduct.append("name", name);
+    newProduct.append("description", description);
+    newProduct.append("cooking_time", cooking_time);
+    newProduct.append("cuisine", cuisine);
+    newProduct.append("type", type);
+    newProduct.append("recipe", recipe);
+    newProduct.append("level", level);
+    newProduct.append("ingridient", ingridient);
 
-  const [ingridients, setIngridients] = useState([]);
+    // Используйте состояние ingridientsArray для добавления ингредиентов в новый продукт
+    ingridientsArray.forEach((ingridient, index) => {
+      newProduct.append(`ingridients[${index}]`, ingridient);
+    });
 
-  function handleSave() {
-    const newProduct = {
-      ingridients: ingridients.map((item) => ({
-        ingridient: item.ingridient,
-        quantity: item.quantity,
-      })),
-      name,
-      description,
-      cooking_time,
-      cuisine,
-      type,
-      recipe,
-      level,
-    };
-    createProduct(newProduct, navigate);
-    console.log(newProduct);
-  }
-  const handleAddIngridient = () => {
-    setIngridients([...ingridients, { ingridient: "", quantity: "" }]);
+    createProduct(newProduct);
+    navigate("/productList");
   };
-  const handleIngridientChange = (index, e) => {
-    const { name, value } = e.target;
-    const updatedIngridients = [...ingridients];
-    updatedIngridients[index][name] = value;
-    setIngridients(updatedIngridients);
-  };
+
   return (
     <div>
       <h2>Add Product</h2>
-      //!
-      <button onClick={handleAddIngridient}>Add Ingridient</button>
-      {ingridients.map((ingridient, index) => (
-        <div key={index}>
-          <input
-            type="text"
-            placeholder="ingridient"
-            name="ingridient"
-            value={ingridient.ingridient}
-            onChange={(e) => handleIngridientChange(index, e)}
-          />
-          <input
-            type="number"
-            placeholder="quantity"
-            name="quantity"
-            value={ingridient.quantity}
-            onChange={(e) => handleIngridientChange(index, e)}
-          />
-        </div>
-      ))}
-      //!
       <input
         type="text"
         placeholder="name"
@@ -104,7 +81,21 @@ const AddProduct = () => {
         <option>Easy</option>
       </select>
       //!
-      <button onClick={handleSave}>Save Products</button>
+      {/* Используйте состояние ingridientsArray для установки значения */}
+      <select
+        value={ingridient}
+        onChange={(e) => setIngridient(e.target.value)}
+      >
+        <option>Choose ingridients</option>
+        {/* Отображаем опции для каждого ингредиента из состояния */}
+        {ingridients &&
+          ingridients.map((ingridient) => (
+            <option key={ingridient.id} value={ingridient.id}>
+              {ingridient.name}
+            </option>
+          ))}
+      </select>
+      <button onClick={handleClick}>Add Product</button>
     </div>
   );
 };
