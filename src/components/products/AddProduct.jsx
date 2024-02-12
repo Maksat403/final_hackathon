@@ -19,7 +19,7 @@ const AddProduct = () => {
   const [recipe, setRecipe] = useState("");
   const [level, setLevel] = useState("");
   const [ingridient, setIngridient] = useState("");
-  const [ingridientsArray, setIngridientsArray] = useState([]);
+  // const [ingridientsArray, setIngridientsArray] = useState([]);
   const handleClick = (e) => {
     e.preventDefault();
     const newProduct = new FormData();
@@ -33,9 +33,9 @@ const AddProduct = () => {
     newProduct.append("ingridient", ingridient);
 
     // Используйте состояние ingridientsArray для добавления ингредиентов в новый продукт
-    ingridientsArray.forEach((ingridient, index) => {
-      newProduct.append(`ingridients[${index}]`, ingridient);
-    });
+    // ingridientsArray.forEach((ingridient, index) => {
+    //   newProduct.append(`ingridients[${index}]`, ingridient);
+    // });
 
     createProduct(newProduct);
     navigate("/productList");
@@ -83,17 +83,16 @@ const AddProduct = () => {
       //!
       {/* Используйте состояние ingridientsArray для установки значения */}
       <select
-        value={ingridient}
+        // value={ingridient}
         onChange={(e) => setIngridient(e.target.value)}
       >
-        <option>Choose ingridients</option>
+        <option>Choose ingridient</option>
         {/* Отображаем опции для каждого ингредиента из состояния */}
-        {ingridients &&
-          ingridients.map((ingridient) => (
-            <option key={ingridient.id} value={ingridient.id}>
-              {ingridient.name}
-            </option>
-          ))}
+        {ingridients.map((elem) => (
+          <option key={elem.id} value={elem.id}>
+            {elem.name}
+          </option>
+        ))}
       </select>
       <button onClick={handleClick}>Add Product</button>
     </div>
