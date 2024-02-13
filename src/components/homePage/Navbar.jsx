@@ -54,11 +54,6 @@ const Navbar = () => {
                 Contacts
               </a>
             </li>
-            {/* <li>
-              <a className={styles.menu__item} href="#">
-                Контакты
-              </a>
-            </li> */}
           </ul>
         </div>
         <div className={styles.title}>
@@ -107,18 +102,6 @@ const Navbar = () => {
             )}
           </div>
         </div>
-        {/* <div className={styles.search}>
-          <input
-            className={styles.search_input}
-            type="text"
-            placeholder="Want a desert?"
-          />
-          <img
-            className={styles.search_icon}
-            src={searchIcon}
-            alt="Иконка поиска"
-          />
-        </div> */}
       </div>
     </div>
   );
